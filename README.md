@@ -1,1 +1,3 @@
 # searchbox
+
+    -Dfile.encoding=gbk
