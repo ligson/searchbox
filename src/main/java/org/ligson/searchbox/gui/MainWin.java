@@ -73,6 +73,8 @@ public class MainWin extends JFrame implements WindowFocusListener {
 		//add(searchBox, BorderLayout.CENTER);
 		//add(searchBox, BorderLayout.SOUTH);
 		//add(searchList, BorderLayout.CENTER);
+
+
 		setUndecorated(true);
 		addWindowFocusListener(this);
 
@@ -84,6 +86,12 @@ public class MainWin extends JFrame implements WindowFocusListener {
 		bg.setBounds(0, 0, getWidth(), getHeight());
 		setContentPane(contentPanel);
 		getLayeredPane().add(bg,new Integer(Integer.MIN_VALUE));
+
+		getLayeredPane().add(searchBox,1);
+		searchBox.setBounds(10,81,280,25);
+		searchBox.setOpaque(false);
+		searchBox.setBorder(null);
+
 		Thread thread = new Thread(getHook());
 		thread.start();	
 		setBackground(new Color(0, 0, 0, 0));

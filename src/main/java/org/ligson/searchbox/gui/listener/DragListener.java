@@ -29,13 +29,18 @@ public class DragListener extends MouseAdapter {
         // 设置窗口的位置
         // 窗口当前的位置 + 鼠标当前在窗口的位置 - 鼠标按下的时候在窗口的位置
         mainWin.setLocation(p.x + e.getX() - origin.x, p.y + e.getY() - origin.y);
+    }
 
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        mainWin.setCursor(Cursor.DEFAULT_CURSOR);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println("press");
         origin.setLocation(e.getX(), e.getY());
+        mainWin.setCursor(Cursor.MOVE_CURSOR);
     }
 
     public DragListener(MainWin mainWin) {
