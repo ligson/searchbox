@@ -21,6 +21,7 @@ public class MainWin extends JFrame implements WindowFocusListener {
 	private KeyboardHook hook = new KeyboardHook(this);
 	private JLabel currentIcon = new JLabel();
 	private JLabel bg = new JLabel();
+	private ContentPanel contentPanel = new ContentPanel(this);
 	public SearchBox getSearchBox() {
 		return searchBox;
 	}
@@ -81,21 +82,11 @@ public class MainWin extends JFrame implements WindowFocusListener {
 		
 		bg.setIcon(bgIcon);
 		bg.setBounds(0, 0, getWidth(), getHeight());
-		JPanel imagePanel = (JPanel) getContentPane();
-		imagePanel.setOpaque(false);
+		setContentPane(contentPanel);
 		getLayeredPane().add(bg,new Integer(Integer.MIN_VALUE));
 		Thread thread = new Thread(getHook());
 		thread.start();	
 		setBackground(new Color(0, 0, 0, 0));
-		setDropTarget(imagePanel.getDropTarget());
-		imagePanel.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				
-			}
-			 
-		});
 	}
 
 	public void triggerVisible() {
