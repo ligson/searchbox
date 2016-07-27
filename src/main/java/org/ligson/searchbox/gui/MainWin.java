@@ -16,7 +16,6 @@ public class MainWin extends JFrame implements WindowFocusListener {
 	 */
 	private static final long serialVersionUID = 341162064964310681L;
 	private SearchBox searchBox = new SearchBox(this);
-	private SearchList searchList = new SearchList(this);
 	private SysTray sysTray = new SysTray(this);
 	private KeyboardHook hook = new KeyboardHook(this);
 	private JLabel currentIcon = new JLabel();
@@ -28,14 +27,6 @@ public class MainWin extends JFrame implements WindowFocusListener {
 
 	public void setSearchBox(SearchBox searchBox) {
 		this.searchBox = searchBox;
-	}
-
-	public SearchList getSearchList() {
-		return searchList;
-	}
-
-	public void setSearchList(SearchList searchList) {
-		this.searchList = searchList;
 	}
 
 	public KeyboardHook getHook() {
@@ -53,6 +44,7 @@ public class MainWin extends JFrame implements WindowFocusListener {
 	public void setSysTray(SysTray sysTray) {
 		this.sysTray = sysTray;
 	}
+
 
 	public MainWin() {
 		setSize(300, 145);
@@ -117,6 +109,6 @@ public class MainWin extends JFrame implements WindowFocusListener {
 
 	@Override
 	public void windowLostFocus(WindowEvent e) {
-		setVisible(false);
+		//setVisible(false);
 	}
 }
