@@ -4,11 +4,13 @@ import sun.awt.shell.ShellFolder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 @SuppressWarnings("restriction")
-public class SearchList extends JComboBox<File> {
+public class SearchList extends JComboBox<File> implements ItemListener {
     /**
      *
      */
@@ -41,7 +43,6 @@ public class SearchList extends JComboBox<File> {
             @Override
             public Component getListCellRendererComponent(JList<? extends File> list, File value, int index,
                                                           boolean isSelected, boolean cellHasFocus) {
-                System.out.println(value + "-" + isSelected + "=" + cellHasFocus);
                 JLabel jLabel = new JLabel(value.getAbsolutePath());
                 jLabel.setOpaque(true);
                 jLabel.setIcon(toIcon(value));
@@ -56,10 +57,18 @@ public class SearchList extends JComboBox<File> {
                 return jLabel;
             }
         });
+        addItemListener(this);
     }
 
     public Dimension getPreferredSize() {
         return new Dimension(super.getPreferredSize().width, 0);
     }
 
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            File file = (File) e.getItem();
+            main.getCurrentIcon().setCurrentFile(file);
+        }
+    }
 }
