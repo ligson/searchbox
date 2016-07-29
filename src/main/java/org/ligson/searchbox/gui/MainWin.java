@@ -2,11 +2,10 @@ package org.ligson.searchbox.gui;
 
 
 import org.ligson.searchbox.gui.listener.KeyboardHook;
+import org.ligson.searchbox.gui.setwin.SetWin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
@@ -21,6 +20,16 @@ public class MainWin extends JFrame implements WindowFocusListener {
     private CurrentIcon currentIcon = new CurrentIcon(this);
     private JLabel bg = new JLabel();
     private ContentPanel contentPanel = new ContentPanel(this);
+
+    private SetWin setWin = new SetWin(this);
+
+    public SetWin getSetWin() {
+        return setWin;
+    }
+
+    public void setSetWin(SetWin setWin) {
+        this.setWin = setWin;
+    }
 
     public SearchBox getSearchBox() {
         return searchBox;
@@ -82,7 +91,7 @@ public class MainWin extends JFrame implements WindowFocusListener {
         searchBox.setBounds(10, 81, 280, 25);
         searchBox.setOpaque(false);
         searchBox.setBorder(null);
-
+        setAlwaysOnTop(true);
         Thread thread = new Thread(getHook());
         thread.start();
         setBackground(new Color(0, 0, 0, 0));
@@ -93,6 +102,7 @@ public class MainWin extends JFrame implements WindowFocusListener {
             setVisible(false);
         } else {
             setVisible(true);
+            getSearchBox().requestFocus();
         }
     }
 
@@ -108,6 +118,6 @@ public class MainWin extends JFrame implements WindowFocusListener {
 
     @Override
     public void windowLostFocus(WindowEvent e) {
-        //setVisible(false);
+        setVisible(false);
     }
 }

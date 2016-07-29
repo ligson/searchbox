@@ -68,7 +68,9 @@ public class SearchList extends JComboBox<File> implements ItemListener {
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             File file = (File) e.getItem();
+            main.getCurrentIcon().setToolTipText(file.getName());
             main.getCurrentIcon().setCurrentFile(file);
+            //main.getSearchBox().setText(file.getName());
         }
     }
 }

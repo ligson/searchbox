@@ -10,7 +10,8 @@ import java.io.File;
 public class CurrentIcon extends JLabel {
     private MainWin mainWin;
     private File currentFile;
-
+    private static int width = 50;
+    private  static  int height = 75;
     public File getCurrentFile() {
         return currentFile;
     }
@@ -26,7 +27,7 @@ public class CurrentIcon extends JLabel {
         this.mainWin = mainWin;
         this.setVerticalTextPosition(JLabel.BOTTOM);
         this.setHorizontalTextPosition(JLabel.CENTER);
-        this.setBounds(125, 0, 50, 75);
+        this.setBounds(135, 0, 50, 75);
         this.setForeground(Color.WHITE);
     }
 
