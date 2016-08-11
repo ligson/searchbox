@@ -19,7 +19,14 @@ public class LeftMenu extends JList<JPanel> implements ListSelectionListener {
         setCellRenderer(new ListCellRenderer<JPanel>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends JPanel> list, JPanel value, int index, boolean isSelected, boolean cellHasFocus) {
-                return new JLabel(value.getName());
+                JLabel jLabel = new JLabel(value.getName());
+                jLabel.setOpaque(true);
+                if (isSelected) {
+                    jLabel.setBackground(Color.GREEN);
+                } else {
+                    jLabel.setBackground(Color.WHITE);
+                }
+                return jLabel;
             }
         });
         setModel(dlm);
@@ -31,19 +38,14 @@ public class LeftMenu extends JList<JPanel> implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        Component[] components = setWin.getRightPanel().getComponents();
+
         if (getSelectedValue() == indexDirPanel) {
-            if (components != null) {
-                setWin.getRightPanel().remove(hotKeyPanel);
-            }
-            setWin.getRightPanel().add(indexDirPanel);
-            setWin.getRightPanel().updateUI();
+            setWin.remove(hotKeyPanel);
+            setWin.add(indexDirPanel);
         } else if (getSelectedValue() == hotKeyPanel) {
-            if (components != null) {
-                setWin.getRightPanel().remove(indexDirPanel);
-            }
-            setWin.getRightPanel().add(hotKeyPanel);
-            setWin.getRightPanel().updateUI();
+            setWin.remove(indexDirPanel);
+            setWin.add(hotKeyPanel);
         }
+        setWin.repaint();
     }
 }

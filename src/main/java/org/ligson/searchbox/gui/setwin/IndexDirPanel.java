@@ -22,21 +22,29 @@ public class IndexDirPanel extends JPanel implements ActionListener, ListSelecti
     private GridBagLayout gridBagLayout = new GridBagLayout();
     private GridBagConstraints gridBagConstraints = new GridBagConstraints();
     private JFileChooser jFileChooser = new JFileChooser();
-    private GridLayout gridLayout = new GridLayout(4,1);
+    private GridLayout gridLayout = new GridLayout(4, 1);
+
     public IndexDirPanel() {
-        setLayout(gridLayout);
+        setSize(400, 500);
+        setLocation(100, 0);
+        setLayout(null);
         //centerPanel.add(indexDirList);
         //centerPanel.setSize(100,200);
-
+        indexDirList.setSize(400, 450);
+        indexDirList.setLocation(0, 0);
         indexDirList.setBackground(Color.BLUE);
         add(indexDirList);
         add(bottomPanel);
+        bottomPanel.setBackground(Color.cyan);
+        bottomPanel.setSize(400, 50);
+        bottomPanel.setLocation(0, 450);
         bottomPanel.add(includeDirBtn);
         bottomPanel.add(excludeDirBtn);
         indexDirList.addListSelectionListener(this);
         includeDirBtn.addActionListener(this);
         excludeDirBtn.addActionListener(this);
         setName("索引目录设置");
+
 
        /* gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.gridwidth = 1;

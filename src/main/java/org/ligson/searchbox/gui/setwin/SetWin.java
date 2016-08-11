@@ -13,43 +13,19 @@ import java.awt.*;
  */
 public class SetWin extends JFrame {
     private MainWin mainWin;
-
-
-    private GridBagLayout gridBagLayout = new GridBagLayout();
-    private GridBagConstraints gridBagConstraints = new GridBagConstraints();
-
-    private JPanel rightPanel = new JPanel(new GridLayout(1, 1));
     private LeftMenu leftMenu = new LeftMenu(this);
-
-
-    public JPanel getRightPanel() {
-        return rightPanel;
-    }
-
-    public void setRightPanel(JPanel rightPanel) {
-        this.rightPanel = rightPanel;
-    }
 
     public SetWin(MainWin mainWin) throws HeadlessException {
         this.mainWin = mainWin;
         setSize(500, 500);
+        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("设置");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setLayout(gridBagLayout);
+        setLayout(null);
         add(leftMenu);
-        add(rightPanel);
-        rightPanel.setBackground(Color.BLUE);
-
-        gridBagConstraints.fill = GridBagConstraints.BOTH;
-        gridBagConstraints.gridwidth = 1;
-        gridBagConstraints.weightx = 1;
-        gridBagConstraints.weighty = 1;
-        gridBagLayout.setConstraints(leftMenu, gridBagConstraints);
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.weightx = 3;
-        gridBagConstraints.weighty = 1;
-        gridBagLayout.setConstraints(rightPanel, gridBagConstraints);
+        leftMenu.setSize(100, 500);
+        leftMenu.setLocation(0, 0);
     }
 
     public MainWin getMainWin() {
@@ -58,5 +34,11 @@ public class SetWin extends JFrame {
 
     public void setMainWin(MainWin mainWin) {
         this.mainWin = mainWin;
+    }
+
+    public static void main(String[] args) {
+        SetWin setWin = new SetWin(null);
+        setWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setWin.setVisible(true);
     }
 }
