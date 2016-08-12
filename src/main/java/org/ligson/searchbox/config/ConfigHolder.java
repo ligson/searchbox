@@ -8,15 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.List;
+import java.util.HashSet;
 
 /**
  * Created by ligson on 2016/8/12.
  */
 public class ConfigHolder {
-    private static final File configFile = new File(Thread.currentThread().getContextClassLoader().getResource("config.json").getFile());
+    private static final File configFile = new File(ConfigHolder.class.getResource("/conf/config.json").getFile());
     private static Logger logger = LoggerFactory.getLogger(ConfigHolder.class);
-    private List<String> indexDirs;
+    private HashSet<String> indexDirs;
     private static ConfigHolder instance;
 
 
@@ -29,8 +29,8 @@ public class ConfigHolder {
             try {
 
                 reader = new JSONReader(new FileReader(configFile));
-                System.out.println(reader.readString());
-                //instance = JSONObject.parseObject(new FileInputStream(configFile), ConfigHolder.class);
+                String json = reader.readString();
+                instance = JSONObject.parseObject(json, ConfigHolder.class);
                 reader.close();
             } catch (Exception e) {
                 logger.error("读取配置文件失败:{}", e.getMessage());
@@ -43,18 +43,19 @@ public class ConfigHolder {
     public synchronized void refresh() {
         try {
             JSONWriter writer = new JSONWriter(new FileWriter(configFile));
-            writer.writeObject(instance);
+            String json = JSON.toJSONString(instance, true);
+            writer.writeObject(json);
             writer.close();
         } catch (IOException e) {
             logger.error("写入配置文件失败:{}", e);
         }
     }
 
-    public List<String> getIndexDirs() {
+    public HashSet<String> getIndexDirs() {
         return indexDirs;
     }
 
-    public void setIndexDirs(List<String> indexDirs) {
+    public void setIndexDirs(HashSet<String> indexDirs) {
         this.indexDirs = indexDirs;
     }
 
