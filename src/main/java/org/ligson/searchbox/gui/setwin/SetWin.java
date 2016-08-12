@@ -14,6 +14,7 @@ import java.awt.*;
 public class SetWin extends JFrame {
     private MainWin mainWin;
     private LeftMenu leftMenu = new LeftMenu(this);
+    public static int realHeight = 471;
 
     public SetWin(MainWin mainWin) throws HeadlessException {
         this.mainWin = mainWin;
@@ -24,7 +25,7 @@ public class SetWin extends JFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayout(null);
         add(leftMenu);
-        leftMenu.setSize(100, 500);
+        leftMenu.setSize(100, realHeight);
         leftMenu.setLocation(0, 0);
     }
 
@@ -40,5 +41,6 @@ public class SetWin extends JFrame {
         SetWin setWin = new SetWin(null);
         setWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setWin.setVisible(true);
+        System.out.println(setWin.getContentPane().getHeight());
     }
 }
