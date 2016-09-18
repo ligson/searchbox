@@ -14,16 +14,19 @@ public class LeftMenu extends JList<JPanel> implements ListSelectionListener {
     private DefaultListModel<JPanel> dlm = new DefaultListModel<>();
     IndexDirPanel indexDirPanel;
     HotKeyPanel hotKeyPanel;
+    GeneralPanel generalPanel;
     private SetWin setWin;
 
     public LeftMenu(SetWin setWin) {
         this.setWin = setWin;
         this.hotKeyPanel = new HotKeyPanel(setWin);
         indexDirPanel = new IndexDirPanel(setWin);
+        generalPanel = new GeneralPanel(setWin);
+        setFixedCellHeight(30);
         setCellRenderer(new ListCellRenderer<JPanel>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends JPanel> list, JPanel value, int index, boolean isSelected, boolean cellHasFocus) {
-                JLabel jLabel = new JLabel(value.getName());
+                JLabel jLabel = new JLabel(" "+value.getName());
                 jLabel.setOpaque(true);
                 if (isSelected) {
                     jLabel.setBackground(new Color(163, 184, 204));
@@ -36,6 +39,7 @@ public class LeftMenu extends JList<JPanel> implements ListSelectionListener {
         setModel(dlm);
         dlm.addElement(indexDirPanel);
         dlm.addElement(hotKeyPanel);
+        dlm.addElement(generalPanel);
         addListSelectionListener(this);
         setSelectedIndex(0);
     }
@@ -44,11 +48,20 @@ public class LeftMenu extends JList<JPanel> implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
 
         if (getSelectedValue() == indexDirPanel) {
-            setWin.remove(hotKeyPanel);
+            for(int i = 0;i<dlm.size();i++){
+                setWin.remove(dlm.get(i));
+            }
             setWin.add(indexDirPanel);
         } else if (getSelectedValue() == hotKeyPanel) {
-            setWin.remove(indexDirPanel);
+            for(int i = 0;i<dlm.size();i++){
+                setWin.remove(dlm.get(i));
+            }
             setWin.add(hotKeyPanel);
+        }else if(getSelectedValue() == generalPanel){
+            for(int i = 0;i<dlm.size();i++){
+                setWin.remove(dlm.get(i));
+            }
+            setWin.add(generalPanel);
         }
         setWin.repaint();
     }

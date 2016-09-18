@@ -7,6 +7,7 @@ import javax.swing.*;
  */
 public class HotKeyPanel extends JPanel  {
     private SetWin setWin;
+
     public HotKeyPanel(SetWin setWin) {
         setSize(400,SetWin.realHeight);
         setLocation(100, 0);

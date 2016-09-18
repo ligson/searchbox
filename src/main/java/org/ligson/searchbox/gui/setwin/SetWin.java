@@ -41,6 +41,5 @@ public class SetWin extends JFrame {
         SetWin setWin = new SetWin(null);
         setWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setWin.setVisible(true);
-        System.out.println(setWin.getContentPane().getHeight());
     }
 }

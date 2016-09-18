@@ -17,6 +17,7 @@ public class ConfigHolder {
     private static final File configFile = new File(ConfigHolder.class.getResource("/conf/config.json").getFile());
     private static Logger logger = LoggerFactory.getLogger(ConfigHolder.class);
     private HashSet<String> indexDirs;
+    private int timePlan =10;
     private static ConfigHolder instance;
 
 
@@ -57,6 +58,14 @@ public class ConfigHolder {
 
     public void setIndexDirs(HashSet<String> indexDirs) {
         this.indexDirs = indexDirs;
+    }
+
+    public int getTimePlan() {
+        return timePlan;
+    }
+
+    public void setTimePlan(int timePlan) {
+        this.timePlan = timePlan;
     }
 
     @Override
